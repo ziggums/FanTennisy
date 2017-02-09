@@ -1,6 +1,14 @@
 import urllib2
 import requests
+from BeautifulSoup import BeautifulSoup
 
-API_URL = 'http://api.espn.com/v1/sports/tennis/atp'
+url = 'http://www.atpworldtour.com/en/scores/current'
+response = requests.get(url)
+html = response.content
 
-response
+soup = BeautifulSoup(html)
+table = soup.find('tbody', attrs={'class': 'day-table'})
+
+print table.prettify()
+
+

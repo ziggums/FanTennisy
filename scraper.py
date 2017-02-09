@@ -1,4 +1,3 @@
-import urllib2
 import requests
 from BeautifulSoup import BeautifulSoup
 
@@ -7,7 +6,7 @@ response = requests.get(url)
 html = response.content
 
 soup = BeautifulSoup(html)
-table = soup.find('tbody', attrs={'class': 'day-table'})
+table = soup.find(attrs={'class': 'scores-results-content'})
 
 print table.prettify()
 

@@ -1,19 +1,30 @@
 import requests
 from bs4 import BeautifulSoup
+import datetime
 
-url = 'http://www.atpworldtour.com/en/scores/current/montpellier/375/draws'
-response = requests.get(url)
-html = response.content
+# defining details for each tournament
 
-soup = BeautifulSoup(html)
-table = soup.find(attrs={'class': 'scores-draw-table'})
+# Should I import datetime and automatically add year, so there's no required input?
+# Also, how much of this should I put in the functions, and how much of it should 
+def australian_open(year):
+	url = 'http://www.xscores.com/tennis/tournamentresults/atp-s/australian_open/' + str(year)
+	scrape(url)
 
-for row in table.findAll('tbody'):
-	for cell in row.findAll('tr'):
-		print cell.text # text in cell
-		print cell.find('img') # image in cell
+# function for calling data
+def scrape(url):
+	response = requests.get(url)
+	html = response.content
 
+	soup = BeautifulSoup(html)
+	table = soup.find(attrs={'class': 'dtable'})
 
+	for row in table.findAll('tr'):
+		for cell in row.findAll('td'):
+			print cell.text
 
+# Main Body Logic #
+now = datetime.datetime.now()
+year = now.year
 
+australian_open(year)
 

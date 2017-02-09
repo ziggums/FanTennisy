@@ -20,7 +20,7 @@ def scrape(url):
 
 	for row in table.findAll('tr'):
 		for cell in row.findAll('td'):
-			print cell.text
+			print (cell.text)
 
 # Main Body Logic #
 now = datetime.datetime.now()
